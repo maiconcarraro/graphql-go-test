@@ -4,6 +4,17 @@ import (
 	"context"
 ) // THIS CODE IS A STARTING POINT ONLY. IT WILL NOT BE UPDATED WITH SCHEMA CHANGES.
 
+var users = []*User{
+	{
+		ID:   "1",
+		Name: "Maicon",
+	},
+	{
+		ID:   "2",
+		Name: "Carraro",
+	},
+}
+
 type Resolver struct{}
 
 func (r *Resolver) Mutation() MutationResolver {

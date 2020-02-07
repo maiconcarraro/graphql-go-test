@@ -12,6 +12,7 @@ type User {
 
 type Query {
   tasks: [Task!]!
+  users: [User!]!
 }
 
 input NewTask {
