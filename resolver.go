@@ -4,17 +4,6 @@ import (
 	"context"
 ) // THIS CODE IS A STARTING POINT ONLY. IT WILL NOT BE UPDATED WITH SCHEMA CHANGES.
 
-var users = []*User{
-	{
-		ID:   "1",
-		Name: "Maicon",
-	},
-	{
-		ID:   "2",
-		Name: "Carraro",
-	},
-}
-
 type Resolver struct{}
 
 func (r *Resolver) Mutation() MutationResolver {
@@ -27,11 +16,15 @@ func (r *Resolver) Query() QueryResolver {
 type mutationResolver struct{ *Resolver }
 
 func (r *mutationResolver) CreateTask(ctx context.Context, input NewTask) (*Task, error) {
-	panic("not implemented")
+	return createMockTask(input)
 }
 
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Tasks(ctx context.Context) ([]*Task, error) {
-	panic("not implemented")
+	return getMockTasks(), nil
+}
+
+func (r *queryResolver) Users(ctx context.Context) ([]*User, error) {
+	return getMockUsers(), nil
 }
