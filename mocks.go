@@ -1,19 +1,20 @@
 package graphql_go_test
 
 import (
+	"errors"
 	"strconv"
 )
 
-type GenerateID struct {
+type generatorID struct {
 	count int
 }
 
-func (generator *GenerateID) next() string {
+func (generator *generatorID) next() string {
 	generator.count++
 	return strconv.Itoa(generator.count)
 }
 
-var userID = GenerateID{1}
+var userID = generatorID{0}
 
 var users = []*User{
 	{
@@ -38,4 +39,43 @@ func findMockUser(ID string) *User {
 		}
 	}
 	return nil
+}
+
+var taskID = generatorID{0}
+
+var tasks = []*Task{
+	{
+		ID:   taskID.next(),
+		Text: "Create project",
+		Done: true,
+		User: findMockUser("1"),
+	},
+	{
+		ID:   taskID.next(),
+		Text: "Run project",
+		Done: false,
+		User: findMockUser("2"),
+	},
+}
+
+func getMockTasks() []*Task {
+	return tasks
+}
+
+func createMockTask(newTask NewTask) (*Task, error) {
+	user := findMockUser(newTask.UserID)
+
+	if user == nil {
+		return nil, errors.New("Invalid UserID")
+	}
+
+	task := &Task{
+		ID:   taskID.next(),
+		Text: newTask.Text,
+		Done: false,
+		User: findMockUser(newTask.UserID),
+	}
+
+	tasks = append(tasks, task)
+	return task, nil
 }
