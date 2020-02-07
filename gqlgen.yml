@@ -9,6 +9,11 @@ exec:
   filename: generated.go
 model:
   filename: models_gen.go
+models:
+  User:
+    model: github.com/maiconcarraro/graphql-go-test/models.User
+  Task:
+    model: github.com/maiconcarraro/graphql-go-test/models.Task
 resolver:
   filename: resolver.go
   type: Resolver

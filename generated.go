@@ -12,6 +12,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
+	"github.com/maiconcarraro/graphql-go-test/models"
 	"github.com/vektah/gqlparser"
 	"github.com/vektah/gqlparser/ast"
 )
@@ -65,11 +66,11 @@ type ComplexityRoot struct {
 }
 
 type MutationResolver interface {
-	CreateTask(ctx context.Context, input NewTask) (*Task, error)
+	CreateTask(ctx context.Context, input NewTask) (*models.Task, error)
 }
 type QueryResolver interface {
-	Tasks(ctx context.Context) ([]*Task, error)
-	Users(ctx context.Context) ([]*User, error)
+	Tasks(ctx context.Context) ([]*models.Task, error)
+	Users(ctx context.Context) ([]*models.User, error)
 }
 
 type executableSchema struct {
@@ -350,10 +351,10 @@ func (ec *executionContext) _Mutation_createTask(ctx context.Context, field grap
 		}
 		return graphql.Null
 	}
-	res := resTmp.(*Task)
+	res := resTmp.(*models.Task)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNTask2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐTask(ctx, field.Selections, res)
+	return ec.marshalNTask2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐTask(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_tasks(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -387,10 +388,10 @@ func (ec *executionContext) _Query_tasks(ctx context.Context, field graphql.Coll
 		}
 		return graphql.Null
 	}
-	res := resTmp.([]*Task)
+	res := resTmp.([]*models.Task)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNTask2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐTaskᚄ(ctx, field.Selections, res)
+	return ec.marshalNTask2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐTaskᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_users(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -424,10 +425,10 @@ func (ec *executionContext) _Query_users(ctx context.Context, field graphql.Coll
 		}
 		return graphql.Null
 	}
-	res := resTmp.([]*User)
+	res := resTmp.([]*models.User)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNUser2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐUserᚄ(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐUserᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -505,7 +506,7 @@ func (ec *executionContext) _Query___schema(ctx context.Context, field graphql.C
 	return ec.marshalO__Schema2ᚖgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐSchema(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Task_id(ctx context.Context, field graphql.CollectedField, obj *Task) (ret graphql.Marshaler) {
+func (ec *executionContext) _Task_id(ctx context.Context, field graphql.CollectedField, obj *models.Task) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -542,7 +543,7 @@ func (ec *executionContext) _Task_id(ctx context.Context, field graphql.Collecte
 	return ec.marshalNID2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Task_text(ctx context.Context, field graphql.CollectedField, obj *Task) (ret graphql.Marshaler) {
+func (ec *executionContext) _Task_text(ctx context.Context, field graphql.CollectedField, obj *models.Task) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -579,7 +580,7 @@ func (ec *executionContext) _Task_text(ctx context.Context, field graphql.Collec
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Task_done(ctx context.Context, field graphql.CollectedField, obj *Task) (ret graphql.Marshaler) {
+func (ec *executionContext) _Task_done(ctx context.Context, field graphql.CollectedField, obj *models.Task) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -616,7 +617,7 @@ func (ec *executionContext) _Task_done(ctx context.Context, field graphql.Collec
 	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Task_user(ctx context.Context, field graphql.CollectedField, obj *Task) (ret graphql.Marshaler) {
+func (ec *executionContext) _Task_user(ctx context.Context, field graphql.CollectedField, obj *models.Task) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -647,13 +648,13 @@ func (ec *executionContext) _Task_user(ctx context.Context, field graphql.Collec
 		}
 		return graphql.Null
 	}
-	res := resTmp.(*User)
+	res := resTmp.(*models.User)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNUser2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐUser(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐUser(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _User_id(ctx context.Context, field graphql.CollectedField, obj *User) (ret graphql.Marshaler) {
+func (ec *executionContext) _User_id(ctx context.Context, field graphql.CollectedField, obj *models.User) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -690,7 +691,7 @@ func (ec *executionContext) _User_id(ctx context.Context, field graphql.Collecte
 	return ec.marshalNID2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _User_name(ctx context.Context, field graphql.CollectedField, obj *User) (ret graphql.Marshaler) {
+func (ec *executionContext) _User_name(ctx context.Context, field graphql.CollectedField, obj *models.User) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -2001,7 +2002,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 
 var taskImplementors = []string{"Task"}
 
-func (ec *executionContext) _Task(ctx context.Context, sel ast.SelectionSet, obj *Task) graphql.Marshaler {
+func (ec *executionContext) _Task(ctx context.Context, sel ast.SelectionSet, obj *models.Task) graphql.Marshaler {
 	fields := graphql.CollectFields(ec.RequestContext, sel, taskImplementors)
 
 	out := graphql.NewFieldSet(fields)
@@ -2043,7 +2044,7 @@ func (ec *executionContext) _Task(ctx context.Context, sel ast.SelectionSet, obj
 
 var userImplementors = []string{"User"}
 
-func (ec *executionContext) _User(ctx context.Context, sel ast.SelectionSet, obj *User) graphql.Marshaler {
+func (ec *executionContext) _User(ctx context.Context, sel ast.SelectionSet, obj *models.User) graphql.Marshaler {
 	fields := graphql.CollectFields(ec.RequestContext, sel, userImplementors)
 
 	out := graphql.NewFieldSet(fields)
@@ -2364,11 +2365,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNTask2githubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐTask(ctx context.Context, sel ast.SelectionSet, v Task) graphql.Marshaler {
+func (ec *executionContext) marshalNTask2githubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐTask(ctx context.Context, sel ast.SelectionSet, v models.Task) graphql.Marshaler {
 	return ec._Task(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNTask2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐTaskᚄ(ctx context.Context, sel ast.SelectionSet, v []*Task) graphql.Marshaler {
+func (ec *executionContext) marshalNTask2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐTaskᚄ(ctx context.Context, sel ast.SelectionSet, v []*models.Task) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2392,7 +2393,7 @@ func (ec *executionContext) marshalNTask2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgr
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNTask2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐTask(ctx, sel, v[i])
+			ret[i] = ec.marshalNTask2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐTask(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2405,7 +2406,7 @@ func (ec *executionContext) marshalNTask2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgr
 	return ret
 }
 
-func (ec *executionContext) marshalNTask2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐTask(ctx context.Context, sel ast.SelectionSet, v *Task) graphql.Marshaler {
+func (ec *executionContext) marshalNTask2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐTask(ctx context.Context, sel ast.SelectionSet, v *models.Task) graphql.Marshaler {
 	if v == nil {
 		if !ec.HasError(graphql.GetResolverContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2415,11 +2416,11 @@ func (ec *executionContext) marshalNTask2ᚖgithubᚗcomᚋmaiconcarraroᚋgraph
 	return ec._Task(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNUser2githubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐUser(ctx context.Context, sel ast.SelectionSet, v User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2githubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐUser(ctx context.Context, sel ast.SelectionSet, v models.User) graphql.Marshaler {
 	return ec._User(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNUser2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐUserᚄ(ctx context.Context, sel ast.SelectionSet, v []*User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐUserᚄ(ctx context.Context, sel ast.SelectionSet, v []*models.User) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2443,7 +2444,7 @@ func (ec *executionContext) marshalNUser2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgr
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNUser2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐUser(ctx, sel, v[i])
+			ret[i] = ec.marshalNUser2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐUser(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2456,7 +2457,7 @@ func (ec *executionContext) marshalNUser2ᚕᚖgithubᚗcomᚋmaiconcarraroᚋgr
 	return ret
 }
 
-func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚐUser(ctx context.Context, sel ast.SelectionSet, v *User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋmaiconcarraroᚋgraphqlᚑgoᚑtestᚋmodelsᚐUser(ctx context.Context, sel ast.SelectionSet, v *models.User) graphql.Marshaler {
 	if v == nil {
 		if !ec.HasError(graphql.GetResolverContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")

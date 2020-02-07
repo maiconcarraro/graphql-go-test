@@ -3,6 +3,8 @@ package graphql_go_test
 import (
 	"errors"
 	"strconv"
+
+	"github.com/maiconcarraro/graphql-go-test/models"
 )
 
 type generatorID struct {
@@ -16,7 +18,7 @@ func (generator *generatorID) next() string {
 
 var userID = generatorID{0}
 
-var users = []*User{
+var users = []*models.User{
 	{
 		ID:   userID.next(),
 		Name: "Maicon",
@@ -27,11 +29,11 @@ var users = []*User{
 	},
 }
 
-func getMockUsers() []*User {
+func getMockUsers() []*models.User {
 	return users
 }
 
-func findMockUser(ID string) *User {
+func findMockUser(ID string) *models.User {
 	users := getMockUsers()
 	for i := range users {
 		if users[i].ID == ID {
@@ -43,7 +45,7 @@ func findMockUser(ID string) *User {
 
 var taskID = generatorID{0}
 
-var tasks = []*Task{
+var tasks = []*models.Task{
 	{
 		ID:   taskID.next(),
 		Text: "Create project",
@@ -58,18 +60,18 @@ var tasks = []*Task{
 	},
 }
 
-func getMockTasks() []*Task {
+func getMockTasks() []*models.Task {
 	return tasks
 }
 
-func createMockTask(newTask NewTask) (*Task, error) {
+func createMockTask(newTask NewTask) (*models.Task, error) {
 	user := findMockUser(newTask.UserID)
 
 	if user == nil {
 		return nil, errors.New("Invalid UserID")
 	}
 
-	task := &Task{
+	task := &models.Task{
 		ID:   taskID.next(),
 		Text: newTask.Text,
 		Done: false,
