@@ -14,6 +14,9 @@ models:
     model: github.com/maiconcarraro/graphql-go-test/models.User
   Task:
     model: github.com/maiconcarraro/graphql-go-test/models.Task
+    fields:
+      user:
+        resolver: true
 resolver:
   filename: resolver.go
   type: Resolver

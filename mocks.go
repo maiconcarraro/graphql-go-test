@@ -33,30 +33,30 @@ func getMockUsers() []*models.User {
 	return users
 }
 
-func findMockUser(ID string) *models.User {
+func findMockUser(ID string) (*models.User, error) {
 	users := getMockUsers()
 	for i := range users {
 		if users[i].ID == ID {
-			return users[i]
+			return users[i], nil
 		}
 	}
-	return nil
+	return nil, errors.New("Invalid UserID")
 }
 
 var taskID = generatorID{0}
 
 var tasks = []*models.Task{
 	{
-		ID:   taskID.next(),
-		Text: "Create project",
-		Done: true,
-		User: findMockUser("1"),
+		ID:     taskID.next(),
+		Text:   "Create project",
+		Done:   true,
+		UserID: "1",
 	},
 	{
-		ID:   taskID.next(),
-		Text: "Run project",
-		Done: false,
-		User: findMockUser("2"),
+		ID:     taskID.next(),
+		Text:   "Run project",
+		Done:   false,
+		UserID: "2",
 	},
 }
 
@@ -65,17 +65,17 @@ func getMockTasks() []*models.Task {
 }
 
 func createMockTask(newTask NewTask) (*models.Task, error) {
-	user := findMockUser(newTask.UserID)
+	_, err := findMockUser(newTask.UserID)
 
-	if user == nil {
-		return nil, errors.New("Invalid UserID")
+	if err != nil {
+		return nil, err
 	}
 
 	task := &models.Task{
-		ID:   taskID.next(),
-		Text: newTask.Text,
-		Done: false,
-		User: findMockUser(newTask.UserID),
+		ID:     taskID.next(),
+		Text:   newTask.Text,
+		Done:   false,
+		UserID: newTask.UserID,
 	}
 
 	tasks = append(tasks, task)

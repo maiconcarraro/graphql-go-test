@@ -21,6 +21,16 @@ func (r *mutationResolver) CreateTask(ctx context.Context, input NewTask) (*mode
 	return createMockTask(input)
 }
 
+type taskResolver struct{ *Resolver }
+
+func (m *taskResolver) User(ctx context.Context, obj *models.Task) (*models.User, error) {
+	return findMockUser(obj.UserID)
+}
+
+func (r *Resolver) Task() TaskResolver {
+	return &taskResolver{r}
+}
+
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Tasks(ctx context.Context) ([]*models.Task, error) {
