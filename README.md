@@ -6,6 +6,12 @@
 go run .\server\server.go
 ```
 
+## update generated models
+
+```bash
+go run github.com/99designs/gqlgen -v
+```
+
 ## playground
 
 ### query
